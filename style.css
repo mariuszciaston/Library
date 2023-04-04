@@ -1,0 +1,42 @@
+html,
+body {
+	height: 100%;
+}
+
+html {
+	font-size: 16px;
+}
+
+body {
+	margin: 0;
+	background-color: hsl(0, 0%, 95%);
+	display: flex;
+	flex-direction: column;
+}
+header {
+	background-color: white;
+}
+
+main {
+	flex-basis: 100%;
+}
+
+main > button#add-btn {
+	font-size: 125%;
+}
+
+main > #grid > .book-card {
+	background-color: lightseagreen;
+	padding: 1rem;
+	margin: 1rem 0;
+}
+
+footer {
+	background-color: hsl(0, 0%, 90%);
+}
+
+header,
+main,
+footer {
+	padding: 1rem;
+}
