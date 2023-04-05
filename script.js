@@ -1,10 +1,10 @@
-/* eslint-disable no-alert */
-
 // VARIABLES & SELECTORS
 
 const myLibrary = [];
 const addBtn = document.querySelector('#addBtn');
 const addExampleBtn = document.querySelector('#addExampleBtn');
+const modalOverlay = document.querySelector('.modalOverlay');
+const pageOverlay = document.querySelector('.pageOverlay');
 const bookModal = document.querySelector('#bookModal');
 const inputTitle = document.querySelector('#title');
 const inputAuthor = document.querySelector('#author');
@@ -78,15 +78,17 @@ function addExampleToLibrary() {
 
 // Show book modal
 addBtn.addEventListener('click', () => {
-	bookModal.classList.add('show');
+	pageOverlay.classList.add('show');
+	modalOverlay.classList.add('show');
 });
 
 // Hide book modal when clicked outside modal
 document.addEventListener(
 	'click',
 	(e) => {
-		if (bookModal.classList.contains('show') && !bookModal.contains(e.target)) {
-			bookModal.classList.remove('show');
+		if (modalOverlay.classList.contains('show') && !bookModal.contains(e.target)) {
+			pageOverlay.classList.remove('show');
+			modalOverlay.classList.remove('show');
 		}
 	},
 	true
@@ -98,6 +100,8 @@ submitBtn.addEventListener('click', (e) => {
 		e.preventDefault();
 		addBookToLibrary();
 		displayBooks();
+		pageOverlay.classList.remove('show');
+		modalOverlay.classList.remove('show');
 	}
 });
 

@@ -15,17 +15,20 @@
     <main>
         <button id="addBtn">+ Add book</button>
         <button id="addExampleBtn">+ Add example</button>
-        <div id="bookModal">
-            <form id="bookForm">
-                <input class="input" type="text" id="title" placeholder="Title" required maxlength="100">
-                <input class="input" type="text" id="author" placeholder="Author" required maxlength="100">
-                <input class="input" type="number" id="pages" placeholder="Pages" required min="1" max="10000">
-                <div class="status">
-                    Did you read it?
-                    <input class="checkbox" type="checkbox" id="isRead">
-                </div>
-            </form>
-            <button type="submit" form="bookForm" id="submitBtn">Submit</button>
+        <div class="pageOverlay"></div>
+        <div class="modalOverlay">
+            <div id="bookModal">
+                <form id="bookForm">
+                    <input class="input" type="text" id="title" placeholder="Title" required maxlength="100">
+                    <input class="input" type="text" id="author" placeholder="Author" required maxlength="100">
+                    <input class="input" type="number" id="pages" placeholder="Pages" required min="1" max="10000">
+                    <div class="status">
+                        Did you read it?
+                        <input class="checkbox" type="checkbox" id="isRead">
+                    </div>
+                </form>
+                <button type="submit" form="bookForm" id="submitBtn">Submit</button>
+            </div>
         </div>
         <div id="grid">
         </div>
