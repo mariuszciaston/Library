@@ -21,14 +21,38 @@ main {
 	flex-basis: 100%;
 }
 
-main > button#add-btn {
+main > button#addBtn,
+main > button#addExampleBtn {
 	font-size: 125%;
 }
 
-main > #grid > .book-card {
+main > #grid > .bookCard {
 	background-color: lightseagreen;
 	padding: 1rem;
 	margin: 1rem 0;
+	transition: 1s ease;
+}
+
+main > #bookModal {
+	background-color: red;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 1rem;
+	display: none;
+}
+main > #bookModal > #bookForm {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+main > #bookModal > #bookForm > .status {
+	display: flex;
+}
+
+main > #bookModal.show {
+	display: flex;
 }
 
 footer {

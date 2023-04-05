@@ -1,9 +1,16 @@
 /* eslint-disable no-alert */
 
-// VALUES & SELECTORS
+// VARIABLES & SELECTORS
 
-let myLibrary = [];
-const addBtn = document.querySelector('#add-btn');
+const myLibrary = [];
+const addBtn = document.querySelector('#addBtn');
+const addExampleBtn = document.querySelector('#addExampleBtn');
+const bookModal = document.querySelector('#bookModal');
+const inputTitle = document.querySelector('#title');
+const inputAuthor = document.querySelector('#author');
+const inputPages = document.querySelector('#pages');
+const inputRead = document.querySelector('#isRead');
+const submitBtn = document.querySelector('#submitBtn');
 
 // CLASSES & FUNCTIONS
 
@@ -14,34 +21,92 @@ class Book {
 		this.pages = pages;
 		this.read = read;
 	}
+
 	info() {
 		return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
 	}
+
+	toggleRead() {
+		this.read = !this.read;
+	}
 }
 
-// Generate multiple books
-for (i = 1; i <= 8; i = i + 1) {
-	myLibrary.push(new Book('The Hobbit ' + i, 'J.R.R. Tolkien', 295, 'not read yet'));
+// Add multiple books to myLibrary array
+for (let i = 1; i <= 8; i += 1) {
+	myLibrary.push(new Book(`The Hobbit ${i}`, 'J.R.R. Tolkien', 295, 'not read yet'));
 }
 
 function displayBooks() {
+	const grid = document.querySelector('#grid');
 	grid.textContent = '';
-	myLibrary.forEach((item) => {
-		let grid = document.querySelector('#grid');
-		let div = document.createElement('div');
-		div.classList.add('book-card');
+
+	myLibrary.forEach((item, index) => {
+		const div = document.createElement('div');
+		div.classList.add('bookCard');
 		grid.appendChild(div);
 		div.textContent = item.info();
+
+		// Toggle read status button
+		const readBtn = document.createElement('button');
+		div.appendChild(readBtn);
+		readBtn.textContent = 'Toggle Read Status';
+		readBtn.addEventListener('click', () => {
+			myLibrary[index].toggleRead();
+			displayBooks();
+		});
+
+		// Remove button
+		const removeBtn = document.createElement('button');
+		div.appendChild(removeBtn);
+		removeBtn.textContent = 'Remove';
+		removeBtn.addEventListener('click', () => {
+			myLibrary.splice(index, 1);
+			displayBooks();
+		});
 	});
 }
 
 function addBookToLibrary() {
-	myLibrary.push(new Book('The Hobbit', 'J.R.R. Tolkien', '295', 'not read yet'));
+	myLibrary.push(new Book(inputTitle.value, inputAuthor.value, inputPages.value, inputRead.checked ? 'read' : 'not read yet'));
 }
 
-// RUN
+function addExampleToLibrary() {
+	myLibrary.push(new Book('Example', 'Laura Peterson', '123', 'not read yet'));
+}
+
+// EVENT LISTENERS
+
+// Show book modal
 addBtn.addEventListener('click', () => {
-	addBookToLibrary();
+	bookModal.classList.add('show');
+});
+
+// Hide book modal when clicked outside modal
+document.addEventListener(
+	'click',
+	(e) => {
+		if (bookModal.classList.contains('show') && !bookModal.contains(e.target)) {
+			bookModal.classList.remove('show');
+		}
+	},
+	true
+);
+
+// Submit new book
+submitBtn.addEventListener('click', (e) => {
+	if (inputTitle.checkValidity() === true && inputAuthor.checkValidity() && inputPages.checkValidity()) {
+		e.preventDefault();
+		addBookToLibrary();
+		displayBooks();
+	}
+});
+
+// Add example book
+addExampleBtn.addEventListener('click', () => {
+	addExampleToLibrary();
 	displayBooks();
 });
+
+// RUN
+
 displayBooks();
