@@ -3,8 +3,8 @@
 const myLibrary = [];
 const addBtn = document.querySelector('#addBtn');
 const addExampleBtn = document.querySelector('#addExampleBtn');
-const pageOverlay = document.querySelector('.pageOverlay');
-const modalOverlay = document.querySelector('.modalOverlay');
+const pageOverlay = document.querySelector('#pageOverlay');
+const modalOverlay = document.querySelector('#modalOverlay');
 const bookModal = document.querySelector('#bookModal');
 const bookForm = document.querySelector('#bookForm');
 const inputTitle = document.querySelector('#title');
@@ -33,7 +33,6 @@ class Book {
 	}
 }
 
-
 function displayBooks() {
 	grid.textContent = '';
 
@@ -45,8 +44,10 @@ function displayBooks() {
 
 		// Toggle read status button
 		const readBtn = document.createElement('button');
+		readBtn.classList.add('readBtn');
+
 		div.appendChild(readBtn);
-		readBtn.textContent = 'Toggle Read Status';
+		readBtn.textContent = 'Read';
 		readBtn.addEventListener('click', () => {
 			myLibrary[index].toggleRead();
 			displayBooks();
@@ -54,6 +55,7 @@ function displayBooks() {
 
 		// Remove button
 		const removeBtn = document.createElement('button');
+		removeBtn.classList.add('removeBtn');
 		div.appendChild(removeBtn);
 		removeBtn.textContent = 'Remove';
 
@@ -73,7 +75,7 @@ function displayBooks() {
 }
 
 // Add multiple books to myLibrary array
-for (let i = 1; i <= 3; i += 1) {
+for (let i = 1; i <= 12; i += 1) {
 	myLibrary.push(new Book(`The Hobbit ${i}`, 'J.R.R. Tolkien', 295, 'not read yet'));
 }
 // for (let i = 1; i <= 8; i += 1) {
