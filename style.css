@@ -1,10 +1,15 @@
 :root {
 	--bcg: hsl(0, 0%, 95%);
 	--grey85: hsl(0, 0%, 85%);
-	--blue: #7dd3fc;
-	--green: #86efac;
-	--yellow: #fde047;
-	--red: #fca5a5;
+	--blue: #38bdf8;
+	--green: #4ade80;
+	--yellow: #facc15;
+	--red: #f87171;
+
+	--lightblue: #7dd3fc;
+	--lightgreen: #86efac;
+	--lightyellow: #fde047;
+	--lightred: #fca5a5;
 
 	--border: 8px;
 	--shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
@@ -66,13 +71,9 @@ main .container {
 button {
 	border: none;
 	border-radius: var(--border);
-	font-family: inherit;
-	font-size: inherit;
 	transition: 0.4s ease;
 	padding: 1rem;
-	color: black;
 	font-weight: 600;
-	font-size: 100%;
 }
 
 button:hover {
@@ -87,14 +88,14 @@ button:hover {
 
 #addBtn:hover,
 #addExampleBtn:hover {
-	background-color: var(--blue);
+	background-color: var(--lightblue);
 }
 
 #grid {
 	padding: 1rem 0;
 	display: grid;
 	gap: 1rem;
-	grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
 }
 
 .bookCard {
@@ -115,26 +116,46 @@ button:hover {
 }
 
 .readBtn {
+	background-color: var(--lightgreen);
+	/* background-color: var(--lightyellow); */
+}
+
+.readBtn:hover {
 	background-color: var(--green);
 	/* background-color: var(--yellow); */
 }
 
-.readBtn:hover {
-	/* background-color: var(--green); */
-	background-color: var(--yellow);
-}
-
 .removeBtn:hover {
-	background-color: var(--red);
+	background-color: var(--lightred);
 }
 
-/* ---------------------------------------------------------- */
-#modalOverlay {
-	position: absolute;
+#pageOverlay {
+	position: fixed;
 	left: 0;
 	right: 0;
 	top: 0;
 	bottom: 0;
+	z-index: 1;
+	-webkit-backdrop-filter: blur(3px);
+	backdrop-filter: blur(3px);
+	background-color: hsla(0, 0%, 0%, 0.5);
+	transition: 0.4s ease;
+	opacity: 0;
+	visibility: hidden;
+}
+
+#pageOverlay.show {
+	opacity: 1;
+	visibility: visible;
+}
+
+#modalOverlay {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 2;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -148,17 +169,14 @@ button:hover {
 
 #bookModal {
 	background-color: var(--bcg);
-
 	border-radius: var(--border);
-	border: solid 1px black;
-
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 	padding: 1rem;
+	margin: 1rem;
 	width: 100%;
-	max-width: 256px;
-	height: 256px;
+	max-width: 288px;
 }
 
 #bookForm {
@@ -167,30 +185,41 @@ button:hover {
 	gap: 1rem;
 }
 
+#bookModal > p {
+	font-size: 125%;
+	font-weight: 600;
+	display: flex;
+	justify-content: center;
+	margin: 0;
+	padding: 0.5rem;
+}
+
+#submitBtn {
+	background-color: var(--lightblue);
+}
+
+#submitBtn:hover {
+	background-color: var(--blue);
+}
+
+input {
+	padding: 1rem;
+	border-radius: var(--border);
+	border: none;
+}
+
 .status {
-	/* display: flex; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
 }
 
-#pageOverlay {
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	-webkit-backdrop-filter: blur(3px);
-	backdrop-filter: blur(3px);
-	background-color: hsla(0, 0%, 0%, 0.1);
-	transition: 0.4s ease;
-	opacity: 0;
-	visibility: hidden;
+input.checkbox {
+	width: 1rem;
+	height: 1rem;
+	accent-color: white;
 }
-
-#pageOverlay.show {
-	opacity: 1;
-	visibility: visible;
-}
-
-/* -------------------------------------------------- */
 
 footer {
 	display: flex;

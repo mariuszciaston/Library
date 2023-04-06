@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
+    <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="icons8-books-flaticons-flat-96.png">
+    <link rel="shortcut icon" href="favicon.png">
     <script src="script.js" defer></script>
     <script src="https://kit.fontawesome.com/5f5b4189ad.js" crossorigin="anonymous" defer></script>
 </head>
@@ -30,10 +31,11 @@
             <div id="pageOverlay"></div>
             <div id="modalOverlay">
                 <div id="bookModal">
+                    <p>Add new book</p>
                     <form id="bookForm">
                         <input class="input" type="text" id="title" placeholder="Title" required maxlength="100">
                         <input class="input" type="text" id="author" placeholder="Author" required maxlength="100">
-                        <input class="input" type="number" id="pages" placeholder="Pages" required min="1" max="10000">
+                        <input class="input" type="number" id="pages" placeholder="Pages" required min="1" max="100000">
                         <div class="status">
                             Did you read it?
                             <input class="checkbox" type="checkbox" id="isRead">

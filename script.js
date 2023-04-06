@@ -75,7 +75,7 @@ function displayBooks() {
 }
 
 // Add multiple books to myLibrary array
-for (let i = 1; i <= 12; i += 1) {
+for (let i = 1; i <= 3; i += 1) {
 	myLibrary.push(new Book(`The Hobbit ${i}`, 'J.R.R. Tolkien', 295, 'not read yet'));
 }
 // for (let i = 1; i <= 8; i += 1) {
@@ -91,7 +91,7 @@ function addBookToLibrary() {
 }
 
 function addExampleToLibrary() {
-	myLibrary.push(new Book('Example', 'Laura Peterson', '123', 'not read yet'));
+	myLibrary.push(new Book('Example title', 'Unknown author', '123', 'not read yet'));
 }
 
 // EVENT LISTENERS
