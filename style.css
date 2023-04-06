@@ -33,7 +33,7 @@ main > button#addExampleBtn {
 	font-size: 125%;
 }
 
-main > #grid > .bookCard {
+main > #grid > div.bookCard {
 	background-color: lightseagreen;
 	padding: 1rem;
 	margin: 1rem 0;
@@ -53,7 +53,6 @@ main > .modalOverlay {
 }
 
 main > .modalOverlay.show {
-	/* z-index: 2; */
 	transform: scale(1);
 }
 
@@ -100,3 +99,23 @@ main > .pageOverlay.show {
 footer {
 	background-color: hsl(0, 0%, 90%);
 }
+
+/* .bookCard {
+	height: 100px;
+}
+
+.bookCard.fadeOut {
+	opacity: 0;
+	height: 0;
+	overflow: hidden;
+	transition: 0.4s ease;
+}
+
+.bookCard.fadeIn {
+	opacity: 0;
+	transition: opacity 0.2s ease-in-out;
+}
+
+.bookCard.fadeIn.show {
+	opacity: 1;
+} */

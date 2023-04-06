@@ -3,14 +3,16 @@
 const myLibrary = [];
 const addBtn = document.querySelector('#addBtn');
 const addExampleBtn = document.querySelector('#addExampleBtn');
-const modalOverlay = document.querySelector('.modalOverlay');
 const pageOverlay = document.querySelector('.pageOverlay');
+const modalOverlay = document.querySelector('.modalOverlay');
 const bookModal = document.querySelector('#bookModal');
+const bookForm = document.querySelector('#bookForm');
 const inputTitle = document.querySelector('#title');
 const inputAuthor = document.querySelector('#author');
 const inputPages = document.querySelector('#pages');
 const inputRead = document.querySelector('#isRead');
 const submitBtn = document.querySelector('#submitBtn');
+const grid = document.querySelector('#grid');
 
 // CLASSES & FUNCTIONS
 
@@ -31,13 +33,8 @@ class Book {
 	}
 }
 
-// Add multiple books to myLibrary array
-for (let i = 1; i <= 8; i += 1) {
-	myLibrary.push(new Book(`The Hobbit ${i}`, 'J.R.R. Tolkien', 295, 'not read yet'));
-}
 
 function displayBooks() {
-	const grid = document.querySelector('#grid');
 	grid.textContent = '';
 
 	myLibrary.forEach((item, index) => {
@@ -59,12 +56,33 @@ function displayBooks() {
 		const removeBtn = document.createElement('button');
 		div.appendChild(removeBtn);
 		removeBtn.textContent = 'Remove';
+
 		removeBtn.addEventListener('click', () => {
 			myLibrary.splice(index, 1);
 			displayBooks();
 		});
+
+		// removeBtn.addEventListener('click', () => {
+		// 	div.classList.add('fadeOut');
+		// 	div.addEventListener('transitionend', () => {
+		// 		myLibrary.splice(index, 1);
+		// 		displayBooks();
+		// 	});
+		// });
 	});
 }
+
+// Add multiple books to myLibrary array
+for (let i = 1; i <= 3; i += 1) {
+	myLibrary.push(new Book(`The Hobbit ${i}`, 'J.R.R. Tolkien', 295, 'not read yet'));
+}
+// for (let i = 1; i <= 8; i += 1) {
+// 	setTimeout(() => {
+// 		myLibrary.push(new Book(`The Hobbit ${i}`, 'J.R.R. Tolkien', 295, 'not read yet'));
+// 		displayBooks();
+// 		console.log('The');
+// 	}, i * 100);
+// }
 
 function addBookToLibrary() {
 	myLibrary.push(new Book(inputTitle.value, inputAuthor.value, inputPages.value, inputRead.checked ? 'read' : 'not read yet'));
@@ -102,6 +120,7 @@ submitBtn.addEventListener('click', (e) => {
 		displayBooks();
 		pageOverlay.classList.remove('show');
 		modalOverlay.classList.remove('show');
+		bookForm.reset();
 	}
 });
 
@@ -109,6 +128,11 @@ submitBtn.addEventListener('click', (e) => {
 addExampleBtn.addEventListener('click', () => {
 	addExampleToLibrary();
 	displayBooks();
+
+	// grid.lastElementChild.classList.add('fadeIn');
+	// setTimeout(() => {
+	// 	grid.lastElementChild.classList.add('show');
+	// }, 0);
 });
 
 // RUN
