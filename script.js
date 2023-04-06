@@ -12,7 +12,9 @@ const inputAuthor = document.querySelector('#author');
 const inputPages = document.querySelector('#pages');
 const inputRead = document.querySelector('#isRead');
 const submitBtn = document.querySelector('#submitBtn');
+const mainContainer = document.querySelector('.main');
 const grid = document.querySelector('#grid');
+const empty = document.querySelector('#empty');
 
 // CLASSES & FUNCTIONS
 
@@ -40,7 +42,22 @@ function displayBooks() {
 		const div = document.createElement('div');
 		div.classList.add('bookCard');
 		grid.appendChild(div);
-		div.textContent = item.info();
+
+		const title = document.createElement('p');
+		title.classList.add('title');
+		div.appendChild(title);
+
+		const author = document.createElement('p');
+		author.classList.add('author');
+		div.appendChild(author);
+
+		const pages = document.createElement('p');
+		pages.classList.add('pages');
+		div.appendChild(pages);
+
+		title.textContent = `"${item.title}"`;
+		author.textContent = item.author;
+		pages.textContent = `${item.pages} pages`;
 
 		// Toggle read status button
 		const readBtn = document.createElement('button');
@@ -72,12 +89,21 @@ function displayBooks() {
 		// 	});
 		// });
 	});
+
+	if (!grid.textContent) {
+		grid.classList.remove('show');
+		empty.classList.add('show');
+	} else {
+		empty.classList.remove('show');
+		grid.classList.add('show');
+	}
 }
 
 // Add multiple books to myLibrary array
 for (let i = 1; i <= 3; i += 1) {
-	myLibrary.push(new Book(`The Hobbit ${i}`, 'J.R.R. Tolkien', 295, 'not read yet'));
+	myLibrary.push(new Book(`The Lord of the Interface ${i}`, 'G.P.T. Altman', 432, 'not read yet'));
 }
+
 // for (let i = 1; i <= 8; i += 1) {
 // 	setTimeout(() => {
 // 		myLibrary.push(new Book(`The Hobbit ${i}`, 'J.R.R. Tolkien', 295, 'not read yet'));
@@ -104,7 +130,7 @@ addBtn.addEventListener('click', () => {
 
 // Hide book modal when clicked outside modal
 document.addEventListener(
-	'click',
+	'mousedown',
 	(e) => {
 		if (modalOverlay.classList.contains('show') && !bookModal.contains(e.target)) {
 			pageOverlay.classList.remove('show');
