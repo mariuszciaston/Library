@@ -12,7 +12,6 @@ const inputAuthor = document.querySelector('#author');
 const inputPages = document.querySelector('#pages');
 const inputRead = document.querySelector('#isRead');
 const submitBtn = document.querySelector('#submitBtn');
-const mainContainer = document.querySelector('.main');
 const grid = document.querySelector('#grid');
 const empty = document.querySelector('#empty');
 
@@ -62,7 +61,6 @@ function displayBooks() {
 		// Toggle read status button
 		const readBtn = document.createElement('button');
 		readBtn.classList.add('readBtn');
-
 		div.appendChild(readBtn);
 		readBtn.textContent = 'Read';
 		readBtn.addEventListener('click', () => {
@@ -70,24 +68,21 @@ function displayBooks() {
 			displayBooks();
 		});
 
-		// Remove button
+		// Create remove button
 		const removeBtn = document.createElement('button');
 		removeBtn.classList.add('removeBtn');
 		div.appendChild(removeBtn);
 		removeBtn.textContent = 'Remove';
 
+		// Remove book card
 		removeBtn.addEventListener('click', () => {
-			myLibrary.splice(index, 1);
-			displayBooks();
-		});
+			div.classList.add('fadeOut');
 
-		// removeBtn.addEventListener('click', () => {
-		// 	div.classList.add('fadeOut');
-		// 	div.addEventListener('transitionend', () => {
-		// 		myLibrary.splice(index, 1);
-		// 		displayBooks();
-		// 	});
-		// });
+			setTimeout(() => {
+				myLibrary.splice(index, 1);
+				displayBooks();
+			}, 200);
+		});
 	});
 
 	if (!grid.textContent) {
@@ -100,17 +95,9 @@ function displayBooks() {
 }
 
 // Add multiple books to myLibrary array
-for (let i = 1; i <= 3; i += 1) {
+for (let i = 1; i <= 0; i += 1) {
 	myLibrary.push(new Book(`The Lord of the Interface ${i}`, 'G.P.T. Altman', 432, 'not read yet'));
 }
-
-// for (let i = 1; i <= 8; i += 1) {
-// 	setTimeout(() => {
-// 		myLibrary.push(new Book(`The Hobbit ${i}`, 'J.R.R. Tolkien', 295, 'not read yet'));
-// 		displayBooks();
-// 		console.log('The');
-// 	}, i * 100);
-// }
 
 function addBookToLibrary() {
 	myLibrary.push(new Book(inputTitle.value, inputAuthor.value, inputPages.value, inputRead.checked ? 'read' : 'not read yet'));
@@ -157,10 +144,15 @@ addExampleBtn.addEventListener('click', () => {
 	addExampleToLibrary();
 	displayBooks();
 
-	// grid.lastElementChild.classList.add('fadeIn');
-	// setTimeout(() => {
-	// 	grid.lastElementChild.classList.add('show');
-	// }, 0);
+	grid.lastElementChild.classList.add('fadeIn');
+	setTimeout(() => {
+		grid.lastElementChild.classList.add('show');
+	}, 0);
+
+	setTimeout(() => {
+		grid.lastElementChild.classList.remove('fadeIn');
+		grid.lastElementChild.classList.remove('show');
+	}, 200);
 });
 
 // RUN

@@ -59,12 +59,6 @@ main {
 
 main .container {
 	padding: 1rem;
-
-	/* display: flex;
-	flex-direction: column;
-	flex-basis: 100%;
-
-	height: 100%;  */
 }
 
 .addButtons {
@@ -128,6 +122,20 @@ button:hover {
 	font-weight: 600;
 }
 
+.bookCard.fadeIn {
+	transition: 0.2s ease;
+	transform: scale(0);
+}
+
+.bookCard.fadeIn.show {
+	transform: scale(1);
+}
+
+.bookCard.fadeOut {
+	transition: 0.2s ease;
+	transform: scale(0);
+}
+
 .readBtn,
 .removeBtn {
 	background-color: var(--bcg);
@@ -149,16 +157,24 @@ button:hover {
 }
 
 #empty {
-	display: none;
-}
-
-#empty.show {
+	position: absolute;
+	opacity: 0;
+	z-index: -1;
+	transition: opacity 0.4s ease;
+	left: 1rem;
+	right: 1rem;
+	top: 14rem;
+	height: calc(100% - 20rem);
 	display: flex;
-	justify-content: center;
 	font-size: 200%;
 	font-weight: 200;
 	text-align: center;
-	padding: 2rem 0;
+	align-items: center;
+	max-width: 500px;
+	margin: auto;
+}
+
+#empty.show {
 	opacity: 0.5;
 }
 
@@ -218,7 +234,7 @@ button:hover {
 	gap: 1rem;
 }
 
-#bookModal > p {
+#bookModal p {
 	font-size: 125%;
 	font-weight: 600;
 	display: flex;
@@ -291,25 +307,3 @@ footer p .emoji {
 	opacity: 100%;
 	transform: rotate(360deg) scale(1.2);
 }
-
-/* -------------------------------------------------- */
-
-/* .bookCard {
-	height: 100px;
-}
-
-.bookCard.fadeOut {
-	opacity: 0;
-	height: 0;
-	overflow: hidden;
-	transition: 0.4s ease;
-}
-
-.bookCard.fadeIn {
-	opacity: 0;
-	transition: opacity 0.2s ease-in-out;
-}
-
-.bookCard.fadeIn.show {
-	opacity: 1;
-} */
