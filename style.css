@@ -136,7 +136,7 @@ button:hover {
 	transform: scale(0);
 }
 
-.readBtn,
+.statusBtn,
 .removeBtn {
 	background-color: var(--bcg);
 	width: 100%;
@@ -146,19 +146,20 @@ button:hover {
 	background-color: var(--lightred);
 }
 
+.statusBtn{
+	background-color: var(--lightyellow);
+}
+
+.statusBtn:hover{
+	background-color: var(--yellow);
+}
+
 .read {
 	background-color: var(--lightgreen);
 }
 
-.notReadYet {
-	background-color: var(--lightyellow);
-}
-
 .read:hover {
 	background-color: var(--green);
-}
-.notReadYet:hover {
-	background-color: var(--yellow);
 }
 
 #empty {
@@ -273,6 +274,7 @@ input.checkbox {
 	width: 1rem;
 	height: 1rem;
 	accent-color: var(--lightgreen);
+	cursor: pointer;
 }
 
 input.checkbox:hover {

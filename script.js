@@ -33,44 +33,44 @@ class Book {
 function displayBooks() {
 	grid.textContent = '';
 
-	myLibrary.forEach((item, index) => {
-		const div = document.createElement('div');
-		div.classList.add('bookCard');
-		grid.appendChild(div);
+	// Loop through the library and create a book card for each book
+	myLibrary.forEach((book, index) => {
+		// Create book card
+		const bookCard = document.createElement('div');
+		bookCard.classList.add('bookCard');
+		grid.appendChild(bookCard);
 
+		// Create book card content
 		const title = document.createElement('p');
 		title.classList.add('title');
-		div.appendChild(title);
+		bookCard.appendChild(title);
+		title.textContent = `"${book.title}"`;
 
 		const author = document.createElement('p');
 		author.classList.add('author');
-		div.appendChild(author);
+		bookCard.appendChild(author);
+		author.textContent = book.author;
 
 		const pages = document.createElement('p');
 		pages.classList.add('pages');
-		div.appendChild(pages);
-
-		title.textContent = `"${item.title}"`;
-		author.textContent = item.author;
-		pages.textContent = `${item.pages} pages`;
+		bookCard.appendChild(pages);
+		pages.textContent = `${book.pages} pages`;
 
 		// Toggle read status button
-		const readBtn = document.createElement('button');
-		readBtn.textContent = item.read;
-		readBtn.classList.add('readBtn');
-		div.appendChild(readBtn);
+		const statusBtn = document.createElement('button');
+		statusBtn.classList.add('statusBtn');
+		bookCard.appendChild(statusBtn);
+		statusBtn.textContent = book.read;
 
 		if (myLibrary[index].read) {
-			readBtn.classList.add('read');
-			readBtn.classList.remove('notReadYet');
-			readBtn.textContent = 'Read';
+			statusBtn.classList.add('read');
+			statusBtn.textContent = 'Read';
 		} else {
-			readBtn.classList.add('notReadYet');
-			readBtn.classList.remove('read');
-			readBtn.textContent = 'Not read yet';
+			statusBtn.classList.remove('read');
+			statusBtn.textContent = 'Not read yet';
 		}
 
-		readBtn.addEventListener('click', () => {
+		statusBtn.addEventListener('click', () => {
 			myLibrary[index].toggleRead();
 			displayBooks();
 		});
@@ -78,12 +78,12 @@ function displayBooks() {
 		// Create remove button
 		const removeBtn = document.createElement('button');
 		removeBtn.classList.add('removeBtn');
-		div.appendChild(removeBtn);
+		bookCard.appendChild(removeBtn);
 		removeBtn.textContent = 'Remove';
 
 		// Remove book card
 		removeBtn.addEventListener('click', () => {
-			div.classList.add('fadeOut');
+			bookCard.classList.add('fadeOut');
 			setTimeout(() => {
 				myLibrary.splice(index, 1);
 				displayBooks();
@@ -91,12 +91,13 @@ function displayBooks() {
 		});
 	});
 
-	if (!grid.textContent) {
-		grid.classList.remove('show');
-		empty.classList.add('show');
-	} else {
+	// Show & hide empty message box
+	if (grid.textContent) {
 		empty.classList.remove('show');
 		grid.classList.add('show');
+	} else {
+		grid.classList.remove('show');
+		empty.classList.add('show');
 	}
 }
 
