@@ -25,10 +25,6 @@ class Book {
 		this.read = read;
 	}
 
-	info() {
-		return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
-	}
-
 	toggleRead() {
 		this.read = !this.read;
 	}
@@ -60,9 +56,20 @@ function displayBooks() {
 
 		// Toggle read status button
 		const readBtn = document.createElement('button');
+		readBtn.textContent = item.read;
 		readBtn.classList.add('readBtn');
 		div.appendChild(readBtn);
-		readBtn.textContent = 'Read';
+
+		if (myLibrary[index].read) {
+			readBtn.classList.add('read');
+			readBtn.classList.remove('notReadYet');
+			readBtn.textContent = 'Read';
+		} else {
+			readBtn.classList.add('notReadYet');
+			readBtn.classList.remove('read');
+			readBtn.textContent = 'Not read yet';
+		}
+
 		readBtn.addEventListener('click', () => {
 			myLibrary[index].toggleRead();
 			displayBooks();
@@ -77,7 +84,6 @@ function displayBooks() {
 		// Remove book card
 		removeBtn.addEventListener('click', () => {
 			div.classList.add('fadeOut');
-
 			setTimeout(() => {
 				myLibrary.splice(index, 1);
 				displayBooks();
@@ -95,16 +101,16 @@ function displayBooks() {
 }
 
 // Add multiple books to myLibrary array
-for (let i = 1; i <= 0; i += 1) {
-	myLibrary.push(new Book(`The Lord of the Interface ${i}`, 'G.P.T. Altman', 432, 'not read yet'));
+for (let i = 1; i <= 3; i += 1) {
+	myLibrary.push(new Book(`Artificial intelligence ${i}`, 'G.P.T. Altman', 432, true));
 }
 
 function addBookToLibrary() {
-	myLibrary.push(new Book(inputTitle.value, inputAuthor.value, inputPages.value, inputRead.checked ? 'read' : 'not read yet'));
+	myLibrary.push(new Book(inputTitle.value, inputAuthor.value, inputPages.value, inputRead.checked));
 }
 
 function addExampleToLibrary() {
-	myLibrary.push(new Book('Example title', 'Unknown author', '123', 'not read yet'));
+	myLibrary.push(new Book('Example title', 'Unknown author', '123'));
 }
 
 // EVENT LISTENERS
@@ -129,7 +135,7 @@ document.addEventListener(
 
 // Submit new book
 submitBtn.addEventListener('click', (e) => {
-	if (inputTitle.checkValidity() === true && inputAuthor.checkValidity() && inputPages.checkValidity()) {
+	if (inputTitle.checkValidity() && inputAuthor.checkValidity() && inputPages.checkValidity()) {
 		e.preventDefault();
 		addBookToLibrary();
 		displayBooks();
