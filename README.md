@@ -1,11 +1,11 @@
 # Library
 
-Library app build with object constructor.
+Library app built with object constructor.
 
 Features:<br>
 • Adding new and example books<br>
 • Changing book read status<br>
-• Deleting unnessesary books<br>
+• Removing unnessesary books<br>
 • Responsive design<br>
 • Cool transitions<br>
 
