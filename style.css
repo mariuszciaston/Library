@@ -146,11 +146,11 @@ button:hover {
 	background-color: var(--lightred);
 }
 
-.statusBtn{
+.statusBtn {
 	background-color: var(--lightyellow);
 }
 
-.statusBtn:hover{
+.statusBtn:hover {
 	background-color: var(--yellow);
 }
 
