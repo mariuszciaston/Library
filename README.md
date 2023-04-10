@@ -1,6 +1,6 @@
 # Library
 
-Library app built with object constructor.
+Library app built using object constructor.
 
 Features:<br>
 • Adding new and example books<br>
