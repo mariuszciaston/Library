@@ -101,10 +101,15 @@ function displayBooks() {
 	}
 }
 
-// Add multiple books to myLibrary array
-for (let i = 1; i <= 3; i += 1) {
-	myLibrary.push(new Book(`Artificial intelligence ${i}`, 'G.P.T. Altman', 432, true));
-}
+// Add books to myLibrary array
+myLibrary.push(new Book(`Feng Shui Your Life`, 'Marie Diamond', 240, true));
+myLibrary.push(new Book(`The Art of War - Tzu Sun`, 'Sun Zi', 84, true));
+myLibrary.push(new Book(`21 Lessons for the 21st Century`, 'Yuval Noah Harari', 352, true));
+myLibrary.push(new Book(`Example title`, 'unknown author', 123, false));
+
+myLibrary.push(new Book(`Simple Guide to a Minimalist Life`, 'Leo Babauta', 78, true));
+myLibrary.push(new Book(`From Animals into Gods: A Brief History of Humankind`, 'Yuval Noah Harari', 476, true));
+myLibrary.push(new Book(`Homo Deus: A Brief History of Tomorrow`, 'Yuval Noah Harari', 464 , true));
 
 function addBookToLibrary() {
 	myLibrary.push(new Book(inputTitle.value, inputAuthor.value, inputPages.value, inputRead.checked));
