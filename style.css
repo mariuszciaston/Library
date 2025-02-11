@@ -191,8 +191,6 @@ button:hover {
 	top: 0;
 	bottom: 0;
 	z-index: 1;
-	-webkit-backdrop-filter: blur(3px);
-	backdrop-filter: blur(3px);
 	background-color: hsla(0, 0%, 0%, 0.5);
 	transition: opacity var(--slow) ease;
 	opacity: 0;
